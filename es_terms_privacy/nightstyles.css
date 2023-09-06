@@ -1,0 +1,93 @@
+@font-face {
+    font-family: Gentium;
+    src: url(GentiumBasic-Regular.ttf);
+}
+@font-face {
+    font-family: NanumMyeongjo-Bold;
+    src: url(NanumMyeongjo-Bold.ttf);
+}
+@font-face {
+    font-family: Ubuntu-Regular;
+    src: url(Ubuntu-Regular.ttf);
+}
+@font-face {
+    font-family: BarlowCondensed-Light;
+    src: url(BarlowCondensed-Light.ttf);
+}
+
+center {
+    font-family: Gentium;
+    line-height: 1.5;
+}
+body {
+    background-color: #111111;
+    font-family: Gentium;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 1.1em;
+    color: #e7bc73;
+}
+p    {color: #f8ffc7;
+    font-family: Gentium;
+    letter-spacing: 0.3px;
+    line-height: 1.5;
+    font-size: 1.1em;
+}
+h1   {
+    color: #e7bc73 ;
+    padding:5px;
+    text-align: center;
+    font-family: Gentium;
+    text-shadow: 2px 2px 5px #f8ffc760;
+    line-height: 1.3;
+    letter-spacing: 0.3px;
+}
+
+h2   {color: #7bd3f8 ;
+    line-height: 1.2;
+    letter-spacing: 0.2px;
+    text-align: center;
+    font-family: Gentium;
+}
+
+h3   {color: #fdc18c;
+    line-height: 1;
+    font-size:100%;
+    text-align: center;
+    font-size: 1.2em;
+    font-family: Ubuntu-Regular;
+}
+
+h4   {color: #fdc18c;
+    line-height: 1;
+    font-size:100%;
+    text-align: center;
+    font-family: Ubuntu-Regular;
+}
+
+b {
+    color: #ff88bb;
+    font-family: NanumMyeongjo-Bold;
+    font-size: 0.9em;
+}
+strong {
+    color: #f8ffc7;
+    font-family: NanumMyeongjo-Bold;
+    font-size: 1.1em;
+}
+i {
+    color: #bcbcbc ;
+    font-family: BarlowCondensed-Light;
+    font-style: normal;
+}
+em {
+    color : #00cee1;
+    font-family: Gentium;
+    font-size: 0.9em;
+}
+p.italic {
+    font-style: italic;
+    color: gray;
+    font-family: Gentium;
+}
+
