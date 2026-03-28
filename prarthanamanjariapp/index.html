@@ -7,23 +7,26 @@
     <title>പ്രാർത്ഥനാമഞ്ജരി – Malayalam Christian Prayer App</title>
     <meta name="description" content="The complete, lightweight and reliable resource for personal Christian Prayers in Malayalam. Available on iOS and Android.">
     <!-- iOS Smart App Banner – shown automatically by Safari on iPhone/iPad -->
-    <!-- Auto-redirect mobile visitors to their app store -->
+    <!-- Auto-redirect mobile visitors to their app store after a short delay -->
     <script>
         (function () {
             var ua = navigator.userAgent || navigator.vendor || window.opera;
-            // Android – redirect to Play Store
             if (/android/i.test(ua)) {
-                window.location.replace(
-                    'https://play.google.com/store/apps/details?id=com.prarthana.prarthanamanjari'
-                );
+                // Android – redirect to Play Store after 1.5s
+                setTimeout(function () {
+                    window.location.replace(
+                        'https://play.google.com/store/apps/details?id=com.prarthana.prarthanamanjari'
+                    );
+                }, 1500);
+            } else if (/iphone|ipad|ipod/i.test(ua)) {
+                // iOS – redirect to App Store after 1.5s
+                setTimeout(function () {
+                    window.location.replace(
+                        'https://apps.apple.com/app/apple-store/id1287152030?pt=118806624&ct=Facebook%20Ad%20Campaign&mt=8'
+                    );
+                }, 1500);
             }
-            // iOS (iPhone / iPad / iPod) – redirect to App Store
-            else if (/iphone|ipad|ipod/i.test(ua) && !/crios|fxios/i.test(ua)) {
-                window.location.replace(
-                    'https://apps.apple.com/app/apple-store/id1287152030?pt=118806624&ct=website&mt=8'
-                );
-            }
-            // Desktop / other browsers – stay on this page
+            // Desktop / other – stay on this page
         })();
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
