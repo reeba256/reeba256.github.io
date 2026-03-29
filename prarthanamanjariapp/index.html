@@ -13,24 +13,31 @@
         (function () {
             var STORAGE_KEY = 'pm_fb_ad_visit_date';
             var today = new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
-
-            try {
-                if (localStorage.getItem(STORAGE_KEY) === today) return; // already counted today
-            } catch (e) { /* localStorage blocked (private mode etc.) – still count */ }
-
             var DB_URL = 'https://qwertyuiop-74b04.firebaseio.com/prarthanamanjari/analytics/fb_ad_visit.json';
+
             fetch(DB_URL)
                 .then(function (r) { return r.json(); })
                 .then(function (current) {
-                    var next = ((current && typeof current === 'number') ? current : 0) + 1;
+                    var val = ((current && typeof current === 'number') ? current : 0);
+                    var skipIncrement = false;
+
+                    try {
+                        if (localStorage.getItem(STORAGE_KEY) === today) skipIncrement = true;
+                    } catch (e) { /* localStorage blocked */ }
+
+                    var displayVal = skipIncrement ? val : (val + 1);
+                    var counterEl = document.getElementById('visit-counter');
+                    if (counterEl) counterEl.textContent = displayVal;
+
+                    if (skipIncrement) return;
+
                     return fetch(DB_URL, {
                         method: 'PUT',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(next)
+                        body: JSON.stringify(displayVal)
+                    }).then(function () {
+                        try { localStorage.setItem(STORAGE_KEY, today); } catch (e) {}
                     });
-                })
-                .then(function () {
-                    try { localStorage.setItem(STORAGE_KEY, today); } catch (e) {}
                 })
                 .catch(function () { /* silently ignore network errors */ });
         })();
@@ -772,7 +779,7 @@
     <!-- ══ FOOTER ═══════════════════════════════════════ -->
     <footer>
         <p>Copyright &copy; Prarthanamanjari &nbsp;
-            
+            <span id="visit-counter" style="color: var(--color-footer); user-select: text;"></span>
         </p>
     </footer>
 
