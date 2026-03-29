@@ -9,6 +9,33 @@
     <!-- iOS Smart App Banner – shown automatically by Safari on iPhone/iPad -->
     <!-- Auto-redirect mobile visitors to their app store after a short delay. -->
     <script>
+        // ── Analytics: increment fb_ad_visit counter (once per browser per day) ─
+        (function () {
+            var STORAGE_KEY = 'pm_fb_ad_visit_date';
+            var today = new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
+
+            try {
+                if (localStorage.getItem(STORAGE_KEY) === today) return; // already counted today
+            } catch (e) { /* localStorage blocked (private mode etc.) – still count */ }
+
+            var DB_URL = 'https://qwertyuiop-74b04.firebaseio.com/prarthanamanjari/analytics/fb_ad_visit.json';
+            fetch(DB_URL)
+                .then(function (r) { return r.json(); })
+                .then(function (current) {
+                    var next = ((current && typeof current === 'number') ? current : 0) + 1;
+                    return fetch(DB_URL, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(next)
+                    });
+                })
+                .then(function () {
+                    try { localStorage.setItem(STORAGE_KEY, today); } catch (e) {}
+                })
+                .catch(function () { /* silently ignore network errors */ });
+        })();
+    </script>
+    <script>
         (function () {
             var ua = navigator.userAgent || navigator.vendor || window.opera;
             if (/android/i.test(ua)) {
